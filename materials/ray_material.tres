@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform vec4 base_color : hint_color = vec4(0.1, 0.1, 0.1, 0);
+uniform vec4 tint : hint_color = vec4(1,1,1,0);
+uniform vec4 emission : hint_color = vec4(0.1, 0.0, 0.0, 0);
+
+uniform vec2 scale;
+uniform float zoom;
+uniform float speed = 1.0;
+
+uniform vec2 refraction_stretch = vec2(2.0, 0.8);
+uniform float refraction_strength : hint_range(0.0, 0.1) = 0.02;
+
+uniform sampler2D noise;
+
+void fragment() {
+	vec2 refraction_offset = texture(noise, vec2(UV.x, UV.y + -TIME * speed * 0.5) * scale * refraction_stretch).xy;
+	refraction_offset -= 0.5; 
+
+	vec3 refracted = texture(SCREEN_TEXTURE, SCREEN_UV - refraction_offset * refraction_strength * zoom).xyz;
+	ALBEDO = base_color.xyz + refracted * tint.xyz;
+	EMISSION = emission.xyz;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+octaves = 4
+period = 11.8
+persistence = 0.268
+lacunarity = 1.62
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/base_color = Color( 0.1, 0.1, 0.1, 0 )
+shader_param/tint = Color( 1, 0.94902, 0.886275, 0.137255 )
+shader_param/emission = Color( 0.517647, 0.0313726, 0.0509804, 0 )
+shader_param/scale = Vector2( 1, 1 )
+shader_param/zoom = 0.2
+shader_param/speed = 1.0
+shader_param/refraction_stretch = Vector2( 1, 1 )
+shader_param/refraction_strength = 0.1
+shader_param/noise = SubResource( 2 )
