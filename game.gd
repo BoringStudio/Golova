@@ -6,6 +6,8 @@ const cell = preload("res://prefabs/cell.tscn")
 onready var _head = $Head
 onready var _timer = $Timer
 onready var _items = $Items
+onready var _camera = $Camera
+onready var _camera_target = $CameraTarget
 
 export(float) var item_width = 1.0
 export(float) var item_height = 1.0
@@ -21,6 +23,28 @@ func _ready():
 	_timer.connect("timeout", self, "_on_time_to_eat")
 	_timer.start()
 	_head.connect("finished_eating", self, "_on_finished_eating")
+
+
+func _process(_delta):
+	if eaten_cell == null and Input.is_action_pressed("mark"):
+		var mouse_position = get_viewport().get_mouse_position()
+		var drop_plane = Plane(Vector3(0, 1, 0), 0.1)
+		var mouse_origin = _camera.project_ray_origin(mouse_position)
+		var mouse_target = drop_plane.intersects_ray(mouse_origin, _camera.project_ray_normal(mouse_position))
+		_camera_target.global_transform.origin = mouse_target
+
+		var space_state = get_world().direct_space_state
+		var intersection = space_state.intersect_ray(
+			mouse_origin, 
+			mouse_target + (mouse_target - mouse_origin).normalized() * 10.0,
+			[],
+			0xffffffff,
+			false, # collide_with_bodies
+			true # collide_with_areas
+		)
+		if not intersection.empty() and intersection.collider is Cell:
+			intersection.collider.marked = true
+
 
 
 func _regenerate():
@@ -68,6 +92,5 @@ func _on_finished_eating():
 
 
 func _on_item_marked(_item):
-	print("MARKED")
 	if _timer.time_left == 0.0:
 		_timer.start()
