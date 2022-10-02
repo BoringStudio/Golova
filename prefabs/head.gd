@@ -56,7 +56,7 @@ func make_angry():
 
 func _compute_eye_position(eye: Spatial, sprite: Spatial, target: Vector3):
 	var dir_to_target = target - eye.global_transform.origin
-	sprite.global_transform.origin = eye.global_transform.origin + dir_to_target.normalized() * 0.1
+	sprite.global_transform.origin = eye.global_transform.origin + dir_to_target.normalized() * 0.07
 
 
 func _on_animation_finished(_anim_name):

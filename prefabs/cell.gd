@@ -11,10 +11,8 @@ var height_offset: float = 0.1
 
 
 func _ready():
-	print(item)
 	var size = 256
 	_sprite.texture.region = Rect2((item % 8) * size, (item / 8) * size, size, size)
-	print(_sprite.texture.region)
 
 
 func _set_mark(value):

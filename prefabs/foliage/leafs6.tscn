@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/foliage/leafs6.tres" type="Texture" id=1]
+[ext_resource path="res://materials/foliage_material.tres" type="Material" id=2]
+
+[node name="Foliage" type="Spatial"]
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0 )
+material_override = ExtResource( 2 )
+centered = false
+offset = Vector2( -256, 0 )
+texture = ExtResource( 1 )

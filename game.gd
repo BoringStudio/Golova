@@ -8,6 +8,7 @@ onready var _timer = $Timer
 onready var _items = $Items
 onready var _camera = $Camera
 onready var _camera_target = $CameraTarget
+onready var _lights_animation = $Lights/AnimationPlayer
 
 export(float) var item_width = 1.0
 export(float) var item_height = 1.0
@@ -21,6 +22,7 @@ func _ready():
 	_regenerate()
 	_timer.connect("timeout", self, "_on_time_to_eat")
 	_timer.start()
+	_lights_animation.play("idle")
 	_head.connect("finished_eating", self, "_on_finished_eating")
 
 
