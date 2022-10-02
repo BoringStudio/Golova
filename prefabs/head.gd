@@ -50,6 +50,10 @@ func eat(cell: Cell):
 	_eyes_animation_player.play("eat")
 
 
+func make_angry():
+	_eyes_animation_player.play("no")
+
+
 func _compute_eye_position(eye: Spatial, sprite: Spatial, target: Vector3):
 	var dir_to_target = target - eye.global_transform.origin
 	sprite.global_transform.origin = eye.global_transform.origin + dir_to_target.normalized() * 0.1

@@ -16,9 +16,9 @@ onready var _area = $Area
 var current_cell: Cell = null
 var marking: Cell = null
 
+
 func _ready():
 	_sprite.connect("animation_finished", self, "_on_animation_finished")
-	_apply_camera_position()
 
 
 func _process(delta):
@@ -53,21 +53,9 @@ func _process(delta):
 	if animation != _sprite.animation:
 		_sprite.play(animation)
 
-	_apply_camera_position()
-
 
 func set_cell(cell: Cell):
 	current_cell = cell
-
-
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			match event.button_index:
-				BUTTON_WHEEL_UP:
-					_adjust_camera(-1)
-				BUTTON_WHEEL_DOWN:
-					_adjust_camera(1)
 
 
 func _get_direction():
@@ -76,19 +64,6 @@ func _get_direction():
 		0,
 		Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
 	)
-
-
-func _adjust_camera(direction: int):
-	camera_distance += scroll_speed * direction
-	_apply_camera_position()
-
-
-func _apply_camera_position():
-	camera_distance = clamp(camera_distance, min_distance, max_distance)
-
-	var direction = Quat(Vector3.RIGHT, -deg2rad(angle)).xform(Vector3.BACK).normalized()
-	_camera.transform.origin = _target.transform.origin + direction * camera_distance
-	_camera.transform = _camera.transform.looking_at(_target.transform.origin, Vector3.UP)
 
 
 func _get_new_animation(direction: Vector3):
@@ -102,5 +77,5 @@ func _get_new_animation(direction: Vector3):
 
 func _on_animation_finished():
 	if marking != null:
-		marking.marked = true
+		marking.marked = !marking.marked
 		marking = null

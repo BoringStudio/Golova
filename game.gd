@@ -11,10 +11,9 @@ onready var _camera_target = $CameraTarget
 
 export(float) var item_width = 1.0
 export(float) var item_height = 1.0
-export(Array, Array, Item) var grid = [[Item.None]]
-
-onready var _rows = len(grid)
-onready var _cols = len(grid[0])
+export(int) var rows = 4
+export(int) var cols = 4
+export(Array, Item) var sequence = []
 
 var eaten_cell: Cell = null
 
@@ -25,72 +24,96 @@ func _ready():
 	_head.connect("finished_eating", self, "_on_finished_eating")
 
 
-func _process(_delta):
-	if eaten_cell == null and Input.is_action_pressed("mark"):
-		var mouse_position = get_viewport().get_mouse_position()
-		var drop_plane = Plane(Vector3(0, 1, 0), 0.1)
-		var mouse_origin = _camera.project_ray_origin(mouse_position)
-		var mouse_target = drop_plane.intersects_ray(mouse_origin, _camera.project_ray_normal(mouse_position))
-		_camera_target.global_transform.origin = mouse_target
-
-		var space_state = get_world().direct_space_state
-		var intersection = space_state.intersect_ray(
-			mouse_origin, 
-			mouse_target + (mouse_target - mouse_origin).normalized() * 10.0,
-			[],
-			0xffffffff,
-			false, # collide_with_bodies
-			true # collide_with_areas
-		)
-		if not intersection.empty() and intersection.collider is Cell:
-			intersection.collider.marked = true
-
-
-
 func _regenerate():
 	for n in _items.get_children():
 		_items.remove_child(n)
 		n.queue_free()
 
-	var field_origin = _items.transform.origin - Vector3((_rows - 1) * item_width, 0, (_cols - 1) * item_height) * 0.5
+	if rows == 0 or cols == 0:
+		return
+
+	var field_origin = _items.transform.origin - Vector3((rows - 1) * item_width, 0, (cols - 1) * item_height) * 0.5
 	var field_x = Vector3(item_width, 0, 0)
 	var field_z = Vector3(0, 0, item_height)
 
-	for r in range(0, _rows):
-		var row = grid[r]
-		for c in range(0, _cols):
-			var item = row[c]
+	var total_items = cols * rows
+
+	var grid = []
+	grid += sequence
+	
+	while grid.size() < total_items:
+		var variant = randi() % (Item.MAX + 10)
+		if variant >= Item.MAX:
+			grid.append(null)
+		else:
+			grid.append(variant)
+
+	randomize()
+	grid.shuffle()
+
+	for r in range(0, rows):
+		for c in range(0, cols):
+			var i = r * cols + c
+			var item = grid[i]
+			if item == null:
+				continue
 
 			var child = cell.instance()
-			child.set_item(item)
-			child.name = "cell_{0}".format([r * _cols + c])
+			child.item = item
+			child.name = "cell_{0}".format([i])
 			_items.add_child(child)
 			child.transform.origin = field_origin + field_x * r + field_z * c
 			child.connect("marked", self, "_on_item_marked")
 
 
 func _on_time_to_eat():
-	var possible_children = []
-	for n in _items.get_children():
-		if n is Cell and n.marked:
-			possible_children.append(n)
-
-	var child_count = len(possible_children)
-	if child_count == 0:
+	if sequence.empty():
+		_focus_eyes(_camera)
 		return
 
-	var cell_to_eat = randi() % child_count
-	eaten_cell = possible_children[cell_to_eat]
-	_head.eat(eaten_cell)
+	var next_seq_idx = 0
+	var cell_to_eat = null
+	var remaining_cells = []
+	for n in _items.get_children():
+		if n is Cell:
+			remaining_cells.append(n)
+			if n.marked:
+				var seq_idx = sequence.find(n.item)
+				if seq_idx >= 0:
+					next_seq_idx = seq_idx
+					cell_to_eat = n
+					break
+
+	if cell_to_eat == null:
+		remaining_cells.shuffle()
+		for n in remaining_cells:
+			if n.item == sequence[next_seq_idx]:
+				cell_to_eat = n
+				break
+
+	if cell_to_eat != null:
+		sequence.remove(next_seq_idx)
+		eaten_cell = cell_to_eat
+		_focus_eyes(cell_to_eat)
+		_head.eat(eaten_cell)
 
 
 func _on_finished_eating():
 	_items.remove_child(eaten_cell)
 	eaten_cell.queue_free()
 	eaten_cell = null
-	_timer.start()
+	if sequence.empty():
+		_focus_eyes(_camera)
+		_head.make_angry()
+	else:
+		_timer.start()
 
 
-func _on_item_marked(_item):
+func _on_item_marked(item):
+	_focus_eyes(item)
 	if _timer.time_left == 0.0:
 		_timer.start()
+
+
+func _focus_eyes(target: Spatial):
+	_camera_target.global_transform.origin = target.global_transform.origin

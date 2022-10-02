@@ -15,7 +15,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.313, -0.102 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform( 0.4, 0, 0, 0, 0.282843, 0.707107, 0, -0.282843, 0.707107, 0, 0.27575, -0.27575 )
+transform = Transform( 0.4, 0, 0, 0, 0.282843, 0.707107, 0, -0.282843, 0.707107, 0, 0.364414, -0.364414 )
 render_priority = 2
 texture = ExtResource( 2 )
 
