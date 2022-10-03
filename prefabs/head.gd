@@ -134,7 +134,7 @@ func _set_damage(value):
 		2:
 			head_material.albedo_color = lerp(Color.white,	damaged_color, 0.5)
 			head_material.emission_enabled = true
-		3:
+		_:
 			head_material.albedo_color = damaged_color
 			head_material.emission_enabled = true
 

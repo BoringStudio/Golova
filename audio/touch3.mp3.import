@@ -11,5 +11,5 @@ dest_files=[ "res://.import/touch3.mp3-38845262d34c3e5eae2aa187b96d6a67.mp3str" 
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

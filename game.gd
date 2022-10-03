@@ -13,7 +13,7 @@ const LEVELS = [
 		solution = "Living things",
 		variants = [{
 			sequence = [Item.Chicken, Item.Elephant, Item.Octopus, Item.Clown, Item.Cow],
-			exclude = [Item.Cat, Item.Crab],
+			exclude = [Item.Cat, Item.Crab, Item.Ladybug],
 			hint = null,
 			rows = 4,
 			cols = 4,
@@ -116,8 +116,8 @@ export(int) var cols = 4
 export(int) var empty_cell_count = 4
 export(Array, Item) var sequence = []
 
-var _current_level = 3
-var _current_variant = 2
+var _current_level = 0
+var _current_variant = 0
 var _ui_state = UiState.Menu
 var _eaten_cell: Cell = null
 var _last_marked_cell: Cell = null
@@ -299,14 +299,15 @@ func _on_finished_eating(damage: int):
 	_items.remove_child(_eaten_cell)
 	_eaten_cell.queue_free()
 	_eaten_cell = null
-	if sequence.empty():
+
+	var victory = damage >= 3
+	if sequence.empty() or victory:
 		_focus_eyes(_camera)
 		_head.make_angry()
 
 		var current_level = LEVELS[_current_level]
 		var variant = current_level.variants[_current_variant]
 
-		var victory = damage >= 3
 		if victory:
 			_current_variant = 1000
 
