@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
 [ext_resource path="res://prefabs/leafs_left.tscn" type="PackedScene" id=2]
@@ -894,6 +894,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ -10.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("StaticBody/Hint:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("StaticBody/Preview:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("StaticBody/Preview:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "fade_in"
@@ -976,9 +1012,49 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=26]
 resource_name = "show_hint"
-length = 5.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("StaticBody/Hint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StaticBody/Hint:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 9.4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9, 1.2, 1.8, 2.2, 2.8, 3.2, 3.8, 4.2, 4.8, 5.2, 5.8, 6.2, 6.8, 7.2, 7.8, 8.2, 9.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.436645, -6.94342 ), Vector3( -0.554923, 0.436645, -6.94342 ), Vector3( -0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( -0.554923, 0.436645, -6.94342 ), Vector3( -0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( -0.554923, 0.436645, -6.94342 ), Vector3( -0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( -0.554923, 0.436645, -6.94342 ), Vector3( -0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( 0.555, 0.437, -6.943 ), Vector3( 0, 0.436645, -6.94342 ) ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "show_level"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("StaticBody/Preview:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -989,10 +1065,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("StaticBody/Preview:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 4.4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=27]
 resource_name = "win"
-length = 5.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Head:translation")
 tracks/0/interp = 1
@@ -1000,10 +1088,34 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.4, 5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1.4, 3, 8.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.436645, -6.94342 ), Vector3( 0, 0.436645, -18.0735 ), Vector3( 0, 0.436645, -6.94342 ) ]
+"values": [ Vector3( 0, 0.436645, -6.94342 ), Vector3( 0, 0.436645, -6.94342 ), Vector3( 0, 0.436645, -18.0735 ), Vector3( 0, 0.436645, -6.94342 ), Vector3( 0, 0.436645, -6.94342 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StaticBody/Preview:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("StaticBody/Preview:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7, 9.4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -1052,6 +1164,14 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 
 [node name="Hint" type="Label3D" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.01, 0 )
+visible = false
+render_priority = 10
+modulate = Color( 0, 0, 0, 1 )
+text = "Hello world"
+font = SubResource( 25 )
+
+[node name="Preview" type="Label3D" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.01, 0 )
 visible = false
 render_priority = 10
@@ -1280,6 +1400,7 @@ anims/RESET = SubResource( 10 )
 anims/fade_in = SubResource( 9 )
 anims/final = SubResource( 28 )
 anims/show_hint = SubResource( 26 )
+anims/show_level = SubResource( 29 )
 anims/win = SubResource( 27 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

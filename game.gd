@@ -10,10 +10,10 @@ enum UiState {
 
 const LEVELS = [
 	{
-		solution = "Living things",
+		solution = "living things",
 		variants = [{
 			sequence = [Item.Chicken, Item.Elephant, Item.Octopus, Item.Clown, Item.Cow],
-			exclude = [Item.Cat, Item.Crab, Item.Ladybug],
+			exclude = [Item.Cat, Item.Crab, Item.Ladybug, Item.Cockroach],
 			hint = null,
 			rows = 4,
 			cols = 4,
@@ -21,7 +21,7 @@ const LEVELS = [
 		}]
 	},
 	{
-		solution = "Things you can theoretically fit in your mouth",
+		solution = "things you can theoretically fit\nin your mouth",
 		variants = [{
 			sequence = [Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye],
 			exclude = [Item.Cat, Item.Crab, Item.Lamp, Item.Domino, Item.Paper, Item.Key, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
@@ -46,7 +46,7 @@ const LEVELS = [
 		}]
 	},
 	{
-		solution = "Things you can open",
+		solution = "things you can open",
 		variants = [{
 			sequence = [Item.Eye, Item.Microwave, Item.Ambrella, Item.Chest, Item.BeerBottle, Item.Car],
 			exclude = [Item.Cat, Item.Crab, Item.Lock, Item.CashMachine, Item.Helicopter, Item.WindMill, Item.Mouth, Item.Elevator, Item.Camera, Item.Safe, Item.Bag, Item.Refrigirator, Item.Door, Item.Prezent, Item.Car, Item.WashingMachine],
@@ -71,7 +71,7 @@ const LEVELS = [
 		}]
 	},
 	{
-		solution = "Rotating things",
+		solution = "totating things",
 		variants = [{
 			sequence = [Item.MerryGoRound, Item.Planet, Item.Bike, Item.Clock, Item.WashingMachine, Item.Revolver],
 			exclude = [Item.Cat, Item.Crab, Item.Lighter, Item.OfficeChair, Item.Lipstick, Item.Cannon, Item.Lighthouse, Item.Helicopter, Item.Drill, Item.Compass, Item.CorkScrew, Item.Wheel, Item.SpinningTop, Item.WheelChair, Item.WindMill, Item.ToiletPaper],
@@ -108,6 +108,7 @@ onready var _main_menu = $CanvasLayer/MainMenu
 onready var _pause_menu = $CanvasLayer/PauseMenu
 onready var _animation: AnimationPlayer = $AnimationPlayer
 onready var _hint: Label3D = $StaticBody/Hint
+onready var _preview: Label3D = $StaticBody/Preview
 
 export(float) var item_width = 1.0
 export(float) var item_height = 1.0
@@ -180,7 +181,6 @@ func _process(_delta):
 		var drop_plane = Plane(Vector3(0, 1, 0), 0.1)
 		var mouse_origin = _camera.project_ray_origin(mouse_position)
 		var mouse_target = drop_plane.intersects_ray(mouse_origin, _camera.project_ray_normal(mouse_position))
-		_camera_target.global_transform.origin = mouse_target
 
 		var space_state = get_world().direct_space_state
 		var intersection = space_state.intersect_ray(
@@ -310,6 +310,22 @@ func _on_finished_eating(damage: int):
 
 		if victory:
 			_current_variant = 1000
+
+		var level = ""
+		if _current_level + 1 < LEVELS.size():
+			level = "Now. Level {0}".format([_current_level + 1])
+
+
+		_preview.text = "{0}, I was thinking about\n{1}.\n\n{2}".format([
+			"Yes" if victory else "Hehe",
+			current_level.solution,
+			level
+		])
+
+		if _current_level == 0:
+			variant.hint = _preview.text
+			_hint.text = variant.hint
+
 
 		if _current_variant + 1 < current_level.variants.size():
 			_current_variant += 1
