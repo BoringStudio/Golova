@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/WashingMachine.mp3-092b537a7878ab3b524a7266586f5ce9.mp3str"
+
+[deps]
+
+source_file="res://audio/words/WashingMachine.mp3"
+dest_files=[ "res://.import/WashingMachine.mp3-092b537a7878ab3b524a7266586f5ce9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

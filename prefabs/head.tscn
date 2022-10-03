@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://textures/head_back.png" type="Texture" id=1]
 [ext_resource path="res://textures/head_front.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://textures/head_front_eat.png" type="Texture" id=6]
 [ext_resource path="res://materials/head_material.tres" type="Material" id=7]
 [ext_resource path="res://textures/eye_left.png" type="Texture" id=8]
+[ext_resource path="res://materials/head_particles_material.tres" type="Material" id=9]
+[ext_resource path="res://textures/head_cracks.png" type="Texture" id=10]
 
 [sub_resource type="SpatialMaterial" id=17]
 flags_transparent = true
@@ -24,45 +26,22 @@ flags_transparent = true
 albedo_texture = ExtResource( 5 )
 roughness = 0.0
 
-[sub_resource type="Curve" id=13]
-_data = [ Vector2( 0, 0.817045 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.107955 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Shader" id=22]
+code = "shader_type spatial;
+render_mode unshaded;
+render_mode cull_disabled;
 
-[sub_resource type="CurveTexture" id=19]
-curve = SubResource( 13 )
+void fragment() {
+	ALBEDO = COLOR.rgb;
+}
+"
 
-[sub_resource type="ParticlesMaterial" id=8]
-flag_align_y = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 1.0
-initial_velocity_random = 1.0
-linear_accel_random = 0.2
-tangential_accel = 100.0
-scale = 3.0
-scale_curve = SubResource( 19 )
-color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="SpatialMaterial" id=20]
-flags_do_not_receive_shadows = true
-flags_disable_ambient_light = true
-params_cull_mode = 2
-albedo_color = Color( 1, 0, 0, 1 )
-emission_enabled = true
-emission = Color( 1, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
+[sub_resource type="ShaderMaterial" id=23]
+shader = SubResource( 22 )
 
 [sub_resource type="QuadMesh" id=12]
-material = SubResource( 20 )
+material = SubResource( 23 )
 size = Vector2( 0.01, 0.2 )
-
-[sub_resource type="SpatialMaterial" id=15]
-flags_transparent = true
-albedo_texture = ExtResource( 2 )
-metallic_specular = 0.0
 
 [sub_resource type="SpatialMaterial" id=21]
 albedo_color = Color( 1, 0, 0, 1 )
@@ -89,30 +68,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 2.88821, -2.02235 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("EyeLeft/Sprite:translation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 4.76837e-07, 0.0999998 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("EyeRight/Sprite:translation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0.1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -171,7 +126,7 @@ tracks/2/keys = {
 "values": [ Vector3( 0, 0, 0.1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MeshInstance:visible")
+tracks/3/path = NodePath("Mouth:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -183,7 +138,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite3D2:visible")
+tracks/4/path = NodePath("Sprite3D:material_override:albedo_texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -192,19 +147,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite3D:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
+"values": [ ExtResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -235,7 +178,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0.1 ), Vector3( 0, 0.26051, 0.253645 ), Vector3( 0, 0.261, 0.254 ), Vector3( 0, 0, 0.1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MeshInstance:visible")
+tracks/2/path = NodePath("Mouth:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -247,7 +190,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite3D2:visible")
+tracks/3/path = NodePath("Sprite3D:material_override:albedo_texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -256,19 +199,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite3D:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"values": [ ExtResource( 6 ), ExtResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -299,6 +230,9 @@ tracks/1/keys = {
 
 [node name="Head" type="Spatial"]
 script = ExtResource( 3 )
+head_material = ExtResource( 7 )
+damaged_texture = ExtResource( 10 )
+damaged_color = Color( 0.682353, 1, 0.890196, 1 )
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.409576, 0.573577, 0, -0.286788, 0.819152, 0, 2.88821, -2.02235 )
@@ -334,8 +268,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.473, -3.95359, 0.305799 )
 
 [node name="Particles" type="Particles" parent="Head/RayOrigin"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, -4.47035e-08, 0, -0.204547, 0.186642 )
+visible = false
 generate_lightmap = false
-emitting = false
 amount = 64
 lifetime = 0.4
 preprocess = 0.39
@@ -343,25 +277,17 @@ speed_scale = 0.69
 explosiveness = 0.08
 randomness = 0.5
 visibility_aabb = AABB( -0.843786, -0.813797, -0.433572, 1.68757, 1.62759, 0.779253 )
-process_material = SubResource( 8 )
+process_material = ExtResource( 9 )
 draw_pass_1 = SubResource( 12 )
 
 [node name="Sprite3D" type="Sprite3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2 )
-material_override = SubResource( 15 )
+material_override = ExtResource( 7 )
 render_priority = 3
 texture = ExtResource( 2 )
 
-[node name="Sprite3D2" type="Sprite3D" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2 )
-visible = false
-layers = 2
-material_override = ExtResource( 7 )
-render_priority = 3
-texture = ExtResource( 6 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427582, -3.94557, 5.96046e-08 )
+[node name="Mouth" type="MeshInstance" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.427582, -3.94557, 1.19209e-07 )
 visible = false
 mesh = SubResource( 7 )
 
@@ -386,3 +312,7 @@ transform = Transform( 1, 0, 0, 0, 1, -1.71691e-08, 0, 1.71691e-08, 1, 0, 0, 0 )
 visible = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3981, 8.51255 )
+omni_range = 33.0226

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Camera.mp3-24369a1f490c19a0776bfb61f3ca793b.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Camera.mp3"
+dest_files=[ "res://.import/Camera.mp3-24369a1f490c19a0776bfb61f3ca793b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

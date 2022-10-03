@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
 [ext_resource path="res://prefabs/leafs_left.tscn" type="PackedScene" id=2]
@@ -23,6 +23,9 @@
 [ext_resource path="res://audio/head_background.mp3" type="AudioStream" id=21]
 [ext_resource path="res://prefabs/stopwatch.gd" type="Script" id=22]
 [ext_resource path="res://ui/pause_menu.tscn" type="PackedScene" id=23]
+[ext_resource path="res://materials/cell_particles_material.tres" type="Material" id=24]
+[ext_resource path="res://materials/head_particles_material.tres" type="Material" id=25]
+[ext_resource path="res://materials/ray_material.tres" type="Material" id=26]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1000, 1, 1000 )
@@ -877,6 +880,36 @@ tracks/1/keys = {
 "values": [ Vector3( 0, -19.2864, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
+[sub_resource type="SpatialMaterial" id=20]
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+params_cull_mode = 2
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=21]
+material = SubResource( 20 )
+size = Vector2( 0.01, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_color = Color( 1, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0.0431373, 0.0431373, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=23]
+material = SubResource( 22 )
+size = Vector2( 0.01, 0.01 )
+
+[sub_resource type="PlaneMesh" id=24]
+size = Vector2( 1, 1 )
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 7 )
 rows = 8
@@ -911,6 +944,7 @@ directional_shadow_mode = 0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 7, 7.47334 )
+current = true
 
 [node name="Trees" type="Spatial" parent="."]
 visible = false
@@ -1114,5 +1148,39 @@ visible = false
 [node name="Timers" type="Spatial" parent="."]
 
 [node name="Head" type="Timer" parent="Timers"]
-wait_time = 10.0
 one_shot = true
+
+[node name="Precompiled" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.3065 )
+
+[node name="HeadParticles" type="Particles" parent="Precompiled"]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, -4.47035e-08, 0, -0.204547, 0.186642 )
+generate_lightmap = false
+emitting = false
+amount = 64
+lifetime = 0.4
+preprocess = 0.39
+speed_scale = 0.69
+explosiveness = 0.08
+randomness = 0.5
+visibility_aabb = AABB( -0.843786, -0.813797, -0.433572, 1.68757, 1.62759, 0.779253 )
+process_material = ExtResource( 25 )
+draw_pass_1 = SubResource( 21 )
+
+[node name="CellParticles" type="Particles" parent="Precompiled"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527374, -0.103307 )
+amount = 64
+lifetime = 0.4
+preprocess = 0.39
+speed_scale = 0.69
+explosiveness = 0.08
+randomness = 0.5
+visibility_aabb = AABB( -0.843786, -0.813797, -0.936513, 1.68757, 1.62759, 1.87303 )
+process_material = ExtResource( 24 )
+draw_pass_1 = SubResource( 23 )
+
+[node name="Ray" type="MeshInstance" parent="Precompiled"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+layers = 4
+mesh = SubResource( 24 )
+material/0 = ExtResource( 26 )

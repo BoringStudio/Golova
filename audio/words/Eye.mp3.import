@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Eye.mp3-4a37d061c6b57ea5468d30835b1dc355.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Eye.mp3"
+dest_files=[ "res://.import/Eye.mp3-4a37d061c6b57ea5468d30835b1dc355.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

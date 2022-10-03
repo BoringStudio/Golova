@@ -23,9 +23,9 @@ enum Item {
 	Drill,
 	Clock,
 	Helicopter,
-	Compas,
+	Compass,
 	Dice,
-	Light,
+	Lighter,
 	Pill,
 	Lock,
 	Bag,
@@ -55,7 +55,7 @@ enum Item {
 	Sandwich,
 	WheelChair,
 	Elevator,
-	Windmill,
+	WindMill,
 	Soup,
 	Chicken,
 	RemoteControl,
@@ -63,14 +63,29 @@ enum Item {
 	Synthesizer,
 	Calculator,
 	Camera,
+	Safe,
+	Ladybug,
+	ChessPiece,
+	Cockroach,
+	Cat,
+	Octopus,
+	AceOfSpades,
+	Strawberry,
+	Egg,
+	OfficeChair,
+	SpinningTop,
+	Prezent,
+	Key,
+	CorkScrew,
+	Car,
+	Revolver,
+	Eye,
 
 	MAX
 }
 
 static func get_voice(item: int):
-	print("ITEM ", item)
 	for key in Item.keys():
 		if Item[key] == item:
-			print("ASDASDASD")
 			return load("res://audio/words/{0}.mp3".format([key]))
 	return null

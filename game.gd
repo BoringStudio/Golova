@@ -1,13 +1,87 @@
 extends Spatial
 
 const Item = preload("res://prefabs/item.gd").Item
-const cell = preload("res://prefabs/cell.tscn")
 
 enum UiState {
 	Menu,
 	Paused,
 	Game,
 }
+
+const LEVELS = [
+	{
+		solution = "Living things",
+		variants = [{
+			sequence = [Item.Chicken, Item.Elephant, Item.Octopus, Item.Clown, Item.Cow],
+			rows = 4,
+			cols = 4,
+			empty_cells = 0
+		}]
+	},
+	{
+		solution = "Things you can theoretically fit in your mouth",
+		variants = [{
+			sequence = [Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye],
+			hint = "You can't eat what I can. I can eat what you can",
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
+			hint = "Big desires and small mouths",
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}]
+	},
+	{
+		solution = "Things you can open",
+		variants = [{
+			sequence = [Item.Eye, Item.Microwave, Item.Ambrella, Item.Chest, Item.BeerBottle, Item.Car],
+			hint = "You can't get out until you touch the knob",
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.Mouth, Item.Elevator, Item.Camera, Item.Safe, Item.Bag, Item.Refrigirator],
+			hint = "Don't close all the doors behind you. Sometimes you have to come back",
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.Door, Item.Prezent, Item.Car, Item.WashingMachine],
+			rows = 5,
+			cols = 5,
+			empty_cells = 4,
+		}]
+	},
+	{
+		solution = "Rotating things",
+		variants = [{
+			sequence = [Item.MerryGoRound, Item.Planet, Item.Bike, Item.Clock, Item.WashingMachine, Item.Revolver],
+			hint = "I ate Jupiter for breakfast. And now my stomach is twisting",
+			rows = 6,
+			cols = 6,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.Lighthouse, Item.Helicopter, Item.Drill, Item.Compass, Item.CorkScrew, Item.Wheel],
+			hint = "Don't look too long before you eat it. It can be hypnotizing",
+			rows = 6,
+			cols = 6,
+			empty_cells = 4,
+		}, {
+			sequence = [Item.SpinningTop, Item.WheelChair, Item.WindMill, Item.ToiletPaper],
+			rows = 6,
+			cols = 6,
+			empty_cells = 4,
+		}]
+	}
+]
 
 onready var _head = $Head
 onready var _head_timer = $Timers/Head
@@ -27,24 +101,10 @@ export(int) var empty_cell_count = 4
 export(Array, Item) var sequence = []
 
 var _current_level = 0
+var _current_variant = 0
 var _ui_state = UiState.Menu
-
-const LEVELS = [
-	{
-		solution = "Rotating things",
-		variants = [
-			{
-				sequence = [Item.MerryGoRound, Item.Planet, Item.Bike, Item.Clock, Item.WashingMachine, Item.Windmill],
-				hint = "I ate Jupiter for breakfast. And now my stomach is twisting.",
-				rows = 4,
-				cols = 4,
-				empty_cells = 4,
-			}
-		]
-	}
-]
-
-var eaten_cell: Cell = null
+var _eaten_cell: Cell = null
+var _last_marked_cell: Cell = null
 
 func _ready():
 	_head.connect("finished_eating", self, "_on_finished_eating")
@@ -52,6 +112,8 @@ func _ready():
 
 	_main_menu.connect("game_started", self, "_on_game_started")
 	_pause_menu.connect("game_resumed", self, "_on_game_resumed")
+
+	_animation.connect("animation_finished", self, "_on_animation_finished")
 
 	_ui_state = UiState.Menu
 	_update_interface()
@@ -61,14 +123,17 @@ func _ready():
 	_animation.playback_speed = 0.0;
 
 
-
 func _on_game_started():
 	_ui_state = UiState.Game
 	_update_interface()
 
 	_animation.playback_speed = 1.0;
-	_head_timer.start()
-	_regenerate(0, 0)
+
+
+func _on_animation_finished(anim):
+	if anim == "fade_in":
+		_head_timer.start()
+		_regenerate()
 
 
 func _on_game_resumed():
@@ -93,17 +158,51 @@ func _clear_field():
 		n.queue_free()
 
 
-func _regenerate(level_id: int, variant_id: int):
-	if rows == 0 or cols == 0:
-		return
+func _process(_delta):
+	if _eaten_cell == null and Input.is_action_pressed("mark"):
+		var mouse_position = get_viewport().get_mouse_position()
+		var drop_plane = Plane(Vector3(0, 1, 0), 0.1)
+		var mouse_origin = _camera.project_ray_origin(mouse_position)
+		var mouse_target = drop_plane.intersects_ray(mouse_origin, _camera.project_ray_normal(mouse_position))
+		_camera_target.global_transform.origin = mouse_target
 
-	var group = LEVELS[level_id]
-	var variant = group.variants[variant_id]
+		var space_state = get_world().direct_space_state
+		var intersection = space_state.intersect_ray(
+			mouse_origin, 
+			mouse_target + (mouse_target - mouse_origin).normalized() * 10.0,
+			[],
+			0xffffffff,
+			false, # collide_with_bodies
+			true # collide_with_areas
+		)
+		if not intersection.empty() and intersection.collider is Cell:
+			var cell = intersection.collider
+			if cell != _last_marked_cell and not cell.locked:
+				_last_marked_cell = cell
+				_focus_eyes(cell)
+
+				if cell.marked:
+					cell.set_marked(false)
+				else:
+					for n in _items.get_children():
+						if n is Cell and not n.locked:
+							n.set_marked(false)
+					cell.set_marked(true)
+
+
+func _regenerate():
+	_clear_field()
+
+	var group = LEVELS[_current_level]
+	var variant = group.variants[_current_variant]
 
 	sequence = variant.sequence
 	rows = variant.rows
 	cols = variant.cols
 	empty_cell_count = variant.empty_cells
+
+	if rows == 0 or cols == 0:
+		return
 
 	var field_origin = _items.transform.origin - Vector3((rows - 1) * item_width, 0, (cols - 1) * item_height) * 0.5
 	var field_x = Vector3(item_width, 0, 0)
@@ -135,12 +234,11 @@ func _regenerate(level_id: int, variant_id: int):
 			if item == null:
 				continue
 
-			var child = cell.instance()
+			var child = preload("res://prefabs/cell.tscn").instance()
 			child.item = item
 			child.name = "cell_{0}".format([i])
 			_items.add_child(child)
 			child.transform.origin = field_origin + field_x * r + field_z * c
-			child.connect("marked", self, "_on_item_marked")
 
 
 func _on_time_to_eat():
@@ -173,26 +271,32 @@ func _on_time_to_eat():
 
 	if cell_to_eat != null:
 		sequence.remove(next_seq_idx)
-		eaten_cell = cell_to_eat
+		_eaten_cell = cell_to_eat
 		_focus_eyes(cell_to_eat)
-		_head.eat(eaten_cell)
+		_head.eat(_eaten_cell)
 
 
-func _on_finished_eating():
-	_items.remove_child(eaten_cell)
-	eaten_cell.queue_free()
-	eaten_cell = null
+func _on_finished_eating(damage: int):
+	_items.remove_child(_eaten_cell)
+	_eaten_cell.queue_free()
+	_eaten_cell = null
 	if sequence.empty():
 		_focus_eyes(_camera)
-		_head.make_angry()
-	else:
-		_head_timer.start()
+		#_head.make_angry()
 
+		var current_level = LEVELS[_current_level]
+		if _current_variant + 1 < current_level.variants.size():
+			_current_variant += 1
+		elif _current_level + 1 < LEVELS.size():
+			_current_level += 1
+			_current_variant = 0
+		else:
+			pass
 
-func _on_item_marked(item):
-	_focus_eyes(item)
-	if _head_timer.time_left == 0.0:
-		_head_timer.start()
+		_head._set_damage(0)
+		_regenerate()
+
+	_head_timer.start()
 
 
 func _focus_eyes(target: Spatial):

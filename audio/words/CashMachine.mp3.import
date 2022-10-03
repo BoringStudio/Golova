@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/CashMachine.mp3-74a1765c6cb3a4b4a51478df2a8bf028.mp3str"
+
+[deps]
+
+source_file="res://audio/words/CashMachine.mp3"
+dest_files=[ "res://.import/CashMachine.mp3-74a1765c6cb3a4b4a51478df2a8bf028.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

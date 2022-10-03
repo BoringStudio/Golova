@@ -1,25 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://textures/shadow.png" type="Texture" id=1]
 [ext_resource path="res://materials/items_atlas.tres" type="Texture" id=2]
 [ext_resource path="res://prefabs/cell.gd" type="Script" id=3]
+[ext_resource path="res://materials/cell_material.tres" type="Material" id=4]
+[ext_resource path="res://materials/cell_particles_material.tres" type="Material" id=5]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.386, 0.318, 0.386 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-emission_shape = 1
-emission_sphere_radius = 0.4
-direction = Vector3( 1, 1, 1 )
-spread = 180.0
-gravity = Vector3( 0, 3, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 0.26
-linear_accel_random = 0.2
-radial_accel = 2.0
-scale = 3.0
-scale_random = 1.0
-color = Color( 1, 0, 0, 1 )
+extents = Vector3( 0.568, 0.5, 0.18 )
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 1, 0, 0, 1 )
@@ -33,15 +21,20 @@ emission_on_uv2 = false
 material = SubResource( 5 )
 size = Vector2( 0.01, 0.01 )
 
-[node name="Spatial" type="Area"]
+[node name="Spatial2" type="Area"]
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.313, -0.102 )
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0.3381, -0.35798 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform( 0.4, 0, 0, 0, 0.282843, 0.707107, 0, -0.282843, 0.707107, 0, 0.364414, -0.364414 )
+[node name="SpriteRoot" type="Spatial" parent="."]
+transform = Transform( 0.4, 0, 0, 0, 0.327661, 0.573577, 0, -0.229431, 0.819152, 0, 0.416142, -0.290539 )
+
+[node name="Sprite" type="Sprite3D" parent="SpriteRoot"]
+transform = Transform( 1, 0, 0, 0, 1, 1.19209e-07, 0, -2.98023e-08, 1, 0, 0, 0 )
+material_override = ExtResource( 4 )
+generate_lightmap = false
 render_priority = 2
 texture = ExtResource( 2 )
 
@@ -51,6 +44,7 @@ texture = ExtResource( 1 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527374, -0.103307 )
+visible = false
 amount = 64
 lifetime = 0.4
 preprocess = 0.39
@@ -58,5 +52,5 @@ speed_scale = 0.69
 explosiveness = 0.08
 randomness = 0.5
 visibility_aabb = AABB( -0.843786, -0.813797, -0.936513, 1.68757, 1.62759, 1.87303 )
-process_material = SubResource( 2 )
+process_material = ExtResource( 5 )
 draw_pass_1 = SubResource( 4 )
