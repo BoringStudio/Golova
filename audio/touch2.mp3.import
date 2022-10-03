@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/touch2.mp3-70e53b11e107e4bbc07b141940855bda.mp3str"
+
+[deps]
+
+source_file="res://audio/touch2.mp3"
+dest_files=[ "res://.import/touch2.mp3-70e53b11e107e4bbc07b141940855bda.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

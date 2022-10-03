@@ -54,3 +54,5 @@ randomness = 0.5
 visibility_aabb = AABB( -0.843786, -0.813797, -0.936513, 1.68757, 1.62759, 1.87303 )
 process_material = ExtResource( 5 )
 draw_pass_1 = SubResource( 4 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

@@ -312,7 +312,4 @@ transform = Transform( 1, 0, 0, 0, 1, -1.71691e-08, 0, 1.71691e-08, 1, 0, 0, 0 )
 visible = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
-
-[node name="OmniLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3981, 8.51255 )
-omni_range = 33.0226
+volume_db = -10.0
