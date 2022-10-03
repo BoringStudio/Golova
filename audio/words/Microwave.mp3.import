@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Microwave.mp3-7d1f8f0062a826b8dd7890e25803b2ae.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Microwave.mp3"
+dest_files=[ "res://.import/Microwave.mp3-7d1f8f0062a826b8dd7890e25803b2ae.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

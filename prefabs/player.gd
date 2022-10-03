@@ -8,8 +8,6 @@ export(float) var movement_speed = 1.0
 export(float) var angle = 45.0
 export(int) var scroll_speed = 1
 
-onready var _camera = $Camera
-onready var _target = $CameraTarget
 onready var _sprite = $AnimatedSprite3D
 onready var _area = $Area
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prefabs/foliage/leafs10.tres" type="Texture" id=1]
 [ext_resource path="res://materials/foliage_material.tres" type="Material" id=2]
+[ext_resource path="res://prefabs/foliage/leafs.gd" type="Script" id=3]
 
 [node name="Foliage" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 0, 0 )

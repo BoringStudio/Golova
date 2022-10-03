@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
 [ext_resource path="res://prefabs/leafs_left.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://prefabs/foliage/leafs8.tscn" type="PackedScene" id=18]
 [ext_resource path="res://prefabs/foliage/leafs2.tscn" type="PackedScene" id=19]
 [ext_resource path="res://prefabs/foliage/leafs5.tscn" type="PackedScene" id=20]
+[ext_resource path="res://audio/head_background.mp3" type="AudioStream" id=21]
+[ext_resource path="res://prefabs/stopwatch.gd" type="Script" id=22]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1000, 1, 1000 )
@@ -27,6 +29,694 @@ extents = Vector3( 1000, 1, 1000 )
 [sub_resource type="PlaneMesh" id=2]
 material = ExtResource( 1 )
 size = Vector2( 10, 10 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FoliageLeft/Foliage:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FoliageLeft/Foliage2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FoliageLeft/Foliage3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FoliageLeft/Foliage4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("FoliageLeft/Foliage5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 180, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FoliageLeft/Foliage6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("FoliageLeft/Foliage7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("FoliageLeft/Foliage8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("FoliageLeft/Foliage9:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("FoliageLeft/Foliage10:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("FoliageLeft/Foliage11:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("FoliageLeft/Foliage12:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -180, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("FoliageLeft/Foliage13:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("FoliageLeft/Foliage14:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 180, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FoliageLeft/Foliage:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 1.5, 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.803998 ), Vector3( 0, 0, 7.24084 ), Vector3( 0, 0, -3.73998 ), Vector3( 0, 0, 4.75241 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FoliageLeft/Foliage2:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 2.128, 0 ), Vector3( 0, -4.54366, 0 ), Vector3( 0, 4.28819, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FoliageLeft/Foliage3:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 1.3, 2.3, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -1.193 ), Vector3( 0, 5.222, -1.193 ), Vector3( -0.0142287, -0.504356, -2.80894 ), Vector3( -0.138187, 4.24044, -0.281096 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FoliageLeft/Foliage4:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4, 1.4, 2.4, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -3.065 ), Vector3( 0, 0, 2.6391 ), Vector3( 0, 0, -1.79594 ), Vector3( 0, 0, 1.74772 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("FoliageLeft/Foliage5:rotation_degrees")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -4.577 ), Vector3( 0, 0, 3.3619 ), Vector3( 0, 0, -3.70281 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FoliageLeft/Foliage6:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3, 1.2, 2.2, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 5.925 ), Vector3( 0, 0, -3.739 ), Vector3( 0, 0, 4.71007 ), Vector3( 0, 0, -3.33271 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("FoliageLeft/Foliage7:rotation_degrees")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.6, 1.6, 2.6, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 8.224, 0 ), Vector3( 0, -5.043, 0 ), Vector3( 0, 3.77759, 0 ), Vector3( 0, -3.05266, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("FoliageLeft/Foliage8:rotation_degrees")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("FoliageLeft/Foliage9:rotation_degrees")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.3, 1.4, 2.5, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -5.508 ), Vector3( 0, 0, 3.273 ), Vector3( 0, 0, -4.99271 ), Vector3( 0, 0, -2.07882 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("FoliageLeft/Foliage10:rotation_degrees")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.5, 1.5, 2.4, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -5.12 ), Vector3( 0, 0, 3.818 ), Vector3( 0, 0, -2.71361 ), Vector3( 0, 0, 2.60581 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("FoliageLeft/Foliage11:rotation_degrees")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("FoliageLeft/Foliage12:rotation_degrees")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -180, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("FoliageLeft/Foliage13:rotation_degrees")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("FoliageLeft/Foliage14:rotation_degrees")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 180, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Foliage:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foliage2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Foliage3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Foliage4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Foliage5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Foliage6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Foliage7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Foliage8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Foliage9:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Foliage10:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Foliage11:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Foliage12:rotation_degrees")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Foliage13:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Foliage14:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Foliage:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 7.918 ), Vector3( 0, 0, -6.996 ), Vector3( 0, 0, 6.51033 ), Vector3( 0, 0, -6.00683 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Foliage2:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4, 1.4, 2.4, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -2.515, 0 ), Vector3( 0, 3.456, 0 ), Vector3( 0, -3.06104, 0 ), Vector3( 0, 1.76048, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Foliage3:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 1.2, 2.2, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -4.21 ), Vector3( 0, 0, 3.16348 ), Vector3( 0, 0, -3.51329 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Foliage4:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6, 1.7, 2.7, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 2.724, 0 ), Vector3( 0, -5.76532, 0 ), Vector3( 0, 2.7539, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Foliage5:rotation_degrees")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8, 1.9, 2.8, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.283761, 4.32772, 3.74428 ), Vector3( 0.802885, 8.3809, -5.43317 ), Vector3( -0.31977, 4.73323, 3.85615 ), Vector3( 0, 0, -1.52379 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Foliage6:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5, 1.5, 2.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 1.879, 0 ), Vector3( 0, -1.503, 0 ), Vector3( 0, 2.96081, 0 ), Vector3( 0, -0.65273, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Foliage7:rotation_degrees")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 7.196, 0 ), Vector3( 0, -2.508, 0 ), Vector3( 0, 3.51582, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Foliage8:rotation_degrees")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Foliage9:rotation_degrees")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.9, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 1.734 ), Vector3( 0, 0, -2.836 ), Vector3( 0, 0, 3.96283 ), Vector3( 0, 0, -0.754031 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Foliage10:rotation_degrees")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Foliage11:rotation_degrees")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.3, 1.3, 2.3, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 3.16 ), Vector3( 0, 0, -1.894 ), Vector3( 0, 0, 2.7503 ), Vector3( 0, 0, -1.31068 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Foliage12:rotation_degrees")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Foliage13:rotation_degrees")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Foliage14:rotation_degrees")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -136,7 +826,7 @@ tracks/3/keys = {
 script = ExtResource( 7 )
 rows = 8
 cols = 8
-sequence = [ 2, 10, 18, 4 ]
+sequence = [ 2, 4, 7, 5 ]
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -152,7 +842,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Head" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436645, -6.94342 )
 eye_target = NodePath("../CameraTarget")
 
 [node name="CameraTarget" type="Spatial" parent="."]
@@ -162,8 +852,10 @@ eye_target = NodePath("../CameraTarget")
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.665, 7.05404 )
 visible = false
+layers = 0
 light_color = Color( 0.870588, 0.870588, 0.870588, 1 )
 light_energy = 0.02
+light_cull_mask = 4294967293
 directional_shadow_mode = 0
 
 [node name="Camera" type="Camera" parent="."]
@@ -215,6 +907,12 @@ transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37532, -0.855523, -4.16241 
 
 [node name="FoliageLeft" type="Spatial" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FoliageLeft"]
+root_node = NodePath("../..")
+autoplay = "idle"
+anims/RESET = SubResource( 6 )
+anims/idle = SubResource( 5 )
+
 [node name="Foliage" parent="FoliageLeft" instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.67936, -0.289924, -9.72174 )
 
@@ -228,7 +926,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5741, 0.0313926, -0.680644 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.43006, 0.00321484, 3.96647 )
 
 [node name="Foliage5" parent="FoliageLeft" instance=ExtResource( 11 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34475, -1.00362, -0.317515 )
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -9.44945, -0.921046, 0.710949 )
+mirror = true
 
 [node name="Foliage6" parent="FoliageLeft" instance=ExtResource( 18 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76546, 1.21091, -5.99517 )
@@ -240,7 +939,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2357, 0.00320292, 1.0635 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9145, 1.68878, -17.295 )
 
 [node name="Foliage9" parent="FoliageLeft" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47034, -1.17064, -3.82178 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8565, -1.10623, -6.63477 )
 
 [node name="Foliage10" parent="FoliageLeft" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08802, 0.0221004, 2.27393 )
@@ -249,57 +948,74 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08802, 0.0221004, 2.27393 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6676, 0.0168109, 3.18637 )
 
 [node name="Foliage12" parent="FoliageLeft" instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -11.1578, 10.1209, -5.79612 )
+transform = Transform( 1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, -11.1578, 10.1209, -5.79612 )
 
 [node name="Foliage13" parent="FoliageLeft" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47123, 0.0437217, 4.66265 )
 
 [node name="Foliage14" parent="FoliageLeft" instance=ExtResource( 14 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, -7.74433, 0.00401115, 4.78212 )
+transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, -7.74433, 0.00401113, 4.95181 )
 
 [node name="FoliageRight" type="Spatial" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FoliageRight"]
+autoplay = "idle"
+anims/RESET = SubResource( 7 )
+anims/idle = SubResource( 8 )
+
 [node name="Foliage" parent="FoliageRight" instance=ExtResource( 14 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62505, -0.289924, -9.72174 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62505, -0.289924, -9.72174 )
+mirror = true
 
 [node name="Foliage2" parent="FoliageRight" instance=ExtResource( 19 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25333, 3.01648, 1.20792 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25333, 3.01648, 1.20792 )
+mirror = true
 
 [node name="Foliage3" parent="FoliageRight" instance=ExtResource( 17 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46656, 0.0313926, -2.53797 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46656, 0.0313926, -2.53797 )
+mirror = true
 
 [node name="Foliage4" parent="FoliageRight" instance=ExtResource( 13 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 7.29238, 0.00321484, 3.52285 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.29238, 0.00321484, 3.52285 )
+mirror = true
 
 [node name="Foliage5" parent="FoliageRight" instance=ExtResource( 11 )]
-transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 14.873, -1.00362, -0.317515 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6251, -1.00362, -0.317515 )
+mirror = true
 
 [node name="Foliage6" parent="FoliageRight" instance=ExtResource( 18 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.57044, 1.21091, -5.99517 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.97461, 1.21091, -5.99517 )
+mirror = true
 
 [node name="Foliage7" parent="FoliageRight" instance=ExtResource( 12 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 7.31237, 0.00320292, 1.0635 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.67656, 0.00320292, 1.0635 )
+mirror = true
 
 [node name="Foliage8" parent="FoliageRight" instance=ExtResource( 15 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0623, 1.68878, -17.295 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.97323, 1.68878, -17.295 )
+mirror = true
 
 [node name="Foliage9" parent="FoliageRight" instance=ExtResource( 11 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5987, -1.17064, -7.01623 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.88038, -1.17064, -7.01623 )
 
 [node name="Foliage10" parent="FoliageRight" instance=ExtResource( 16 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 7.65937, 0.0220985, -4.07902 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.40333, 0.0220985, -4.07902 )
+mirror = true
 
 [node name="Foliage11" parent="FoliageRight" instance=ExtResource( 20 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.06914, 0.0168109, 3.18637 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.81463, 0.0168109, 3.18637 )
+mirror = true
 
 [node name="Foliage12" parent="FoliageRight" instance=ExtResource( 18 )]
-transform = Transform( -1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 8.25967, 10.1209, -5.79612 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0896, -1.46657, -5.79612 )
 
 [node name="Foliage13" parent="FoliageRight" instance=ExtResource( 16 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 8.28719, 0.0437217, 4.66265 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.28719, 0.0437217, 4.66265 )
+mirror = true
 
 [node name="Foliage14" parent="FoliageRight" instance=ExtResource( 14 )]
-transform = Transform( -1, 0, 0, 0, 1, -8.74228e-08, 0, 8.74228e-08, 1, 9.47604, 0.00401115, 4.78212 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47604, 0.00401115, 4.78212 )
+mirror = true
 
 [node name="Lights" type="Spatial" parent="."]
 
@@ -324,3 +1040,12 @@ omni_range = 17.1568
 autoplay = "idle"
 anims/RESET = SubResource( 3 )
 anims/idle = SubResource( 4 )
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 22 )

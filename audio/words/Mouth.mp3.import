@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mouth.mp3-2f945c04b9f531f0fefc58fbd217b10c.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Mouth.mp3"
+dest_files=[ "res://.import/Mouth.mp3-2f945c04b9f531f0fefc58fbd217b10c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

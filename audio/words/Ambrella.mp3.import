@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ambrella.mp3-b511422f258e70d5edf3f2026c1ba235.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Ambrella.mp3"
+dest_files=[ "res://.import/Ambrella.mp3-b511422f258e70d5edf3f2026c1ba235.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

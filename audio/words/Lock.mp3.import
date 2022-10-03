@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lock.mp3-61b069d9960ba6213be8103efac0aedb.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Lock.mp3"
+dest_files=[ "res://.import/Lock.mp3-61b069d9960ba6213be8103efac0aedb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

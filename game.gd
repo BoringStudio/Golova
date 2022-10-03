@@ -9,6 +9,7 @@ onready var _items = $Items
 onready var _camera = $Camera
 onready var _camera_target = $CameraTarget
 onready var _lights_animation = $Lights/AnimationPlayer
+onready var _audio = $Audio
 
 export(float) var item_width = 1.0
 export(float) var item_height = 1.0
@@ -24,6 +25,12 @@ func _ready():
 	_timer.start()
 	_lights_animation.play("idle")
 	_head.connect("finished_eating", self, "_on_finished_eating")
+	var timer = get_tree().create_timer(10.0)
+	timer.connect("timeout", self, "_on_start_music")
+
+
+func _on_start_music():
+	_audio.play()
 
 
 func _regenerate():

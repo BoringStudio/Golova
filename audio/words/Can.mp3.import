@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Can.mp3-a9f60fcf0d1461c3cd1b1d9d3b628007.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Can.mp3"
+dest_files=[ "res://.import/Can.mp3-a9f60fcf0d1461c3cd1b1d9d3b628007.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
