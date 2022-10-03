@@ -5,3 +5,4 @@
 [resource]
 flags_transparent = true
 albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0

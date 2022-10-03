@@ -49,6 +49,6 @@ noise = SubResource( 2 )
 [resource]
 shader = SubResource( 1 )
 shader_param/base_color = Color( 1, 1, 1, 0 )
-shader_param/distortion_force = 0.04
+shader_param/distortion_force = 0.01
 shader_param/edge = 0.2
 shader_param/edge_distortion = SubResource( 3 )

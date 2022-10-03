@@ -22,6 +22,7 @@ scale_random = 1.0
 color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 1, 0, 0, 1 )
 emission_enabled = true
 emission = Color( 1, 0.0431373, 0.0431373, 1 )
 emission_energy = 1.0

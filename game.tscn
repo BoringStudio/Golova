@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
 [ext_resource path="res://prefabs/leafs_left.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://game.gd" type="Script" id=7]
 [ext_resource path="res://prefabs/tree_right_2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://prefabs/bottom_leafs_left.tscn" type="PackedScene" id=9]
-[ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefabs/foliage/leafs7.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefabs/foliage/leafs9.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefabs/foliage/leafs4.tscn" type="PackedScene" id=13]
@@ -22,6 +22,7 @@
 [ext_resource path="res://prefabs/foliage/leafs5.tscn" type="PackedScene" id=20]
 [ext_resource path="res://audio/head_background.mp3" type="AudioStream" id=21]
 [ext_resource path="res://prefabs/stopwatch.gd" type="Script" id=22]
+[ext_resource path="res://ui/pause_menu.tscn" type="PackedScene" id=23]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1000, 1, 1000 )
@@ -822,6 +823,60 @@ tracks/3/keys = {
 "values": [ Vector3( 0, -12.8136, -10.4839 ), Vector3( 0, -9.43822, -10.4839 ), Vector3( 0, -10.9266, -10.4839 ), Vector3( 0, -1.8573, -10.4839 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 7, 7.47334 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lights:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 7, 8.71667 ), Vector3( 0, 7, 7.47334 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lights:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -19.2864, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 7 )
 rows = 8
@@ -836,10 +891,6 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 mesh = SubResource( 2 )
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
 
 [node name="Head" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436645, -6.94342 )
@@ -860,8 +911,6 @@ directional_shadow_mode = 0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 7, 7.47334 )
-
-[node name="Player" parent="." instance=ExtResource( 10 )]
 
 [node name="Trees" type="Spatial" parent="."]
 visible = false
@@ -948,7 +997,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08802, 0.0221004, 2.27393 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6676, 0.0168109, 3.18637 )
 
 [node name="Foliage12" parent="FoliageLeft" instance=ExtResource( 18 )]
-transform = Transform( 1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, -11.1578, 10.1209, -5.79612 )
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -11.1578, 10.1209, -5.79612 )
 
 [node name="Foliage13" parent="FoliageLeft" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47123, 0.0437217, 4.66265 )
@@ -1041,7 +1090,7 @@ autoplay = "idle"
 anims/RESET = SubResource( 3 )
 anims/idle = SubResource( 4 )
 
-[node name="Audio" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 
 [node name="Label" type="Label" parent="."]
@@ -1049,3 +1098,21 @@ margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 22 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 10 )
+anims/fade_in = SubResource( 9 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource( 10 )]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 23 )]
+pause_mode = 2
+visible = false
+
+[node name="Timers" type="Spatial" parent="."]
+
+[node name="Head" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
