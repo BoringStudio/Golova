@@ -1,8 +1,54 @@
-[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://textures/ground.png" type="Texture" id=1]
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform vec4 base_color: hint_color = vec4(1, 1, 1, 0);
+uniform sampler2D edge_distortion;
+uniform float distortion_force = 0.015;
+uniform float edge = 0.2;
+
+void fragment() {
+	bool is_edge = false;
+
+	float distorion = (texture(edge_distortion, UV.xy).x * 2.0 - 1.0) * 0.5 * distortion_force;
+	vec2 edge_point = UV.xy;
+	
+	if (UV.x < edge) {
+		is_edge = true;
+		edge_point.x = edge + distorion;
+	} else if (UV.x > (1.0 - edge)) {
+		is_edge = true;
+		edge_point.x = 1.0 - edge + distorion;
+	}
+	
+	if (UV.y < edge) {
+		is_edge = true;
+		edge_point.y = edge + distorion;
+	} else if (UV.y > (1.0 - edge)) {
+		is_edge = true;
+		edge_point.y = 1.0 - edge + distorion;
+	}
+	
+	float dist = distance(UV, edge_point) / edge;
+	
+	float dark = 1.0 - 1.1 * dist - 0.01 * dist * dist;
+	if (is_edge && dark <= 0.001) {
+		discard;
+	}
+	
+	ALBEDO.xyz = base_color.xyz * dark;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
 
 [resource]
-albedo_texture = ExtResource( 1 )
-metallic_specular = 0.0
-uv1_scale = Vector3( 8, 8, 1 )
+shader = SubResource( 1 )
+shader_param/base_color = Color( 1, 1, 1, 0 )
+shader_param/distortion_force = 0.01
+shader_param/edge = 0.2
+shader_param/edge_distortion = SubResource( 3 )

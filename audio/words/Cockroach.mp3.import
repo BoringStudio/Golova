@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cockroach.mp3-95d4d8822bcc77fdbea2255491cf3267.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Cockroach.mp3"
+dest_files=[ "res://.import/Cockroach.mp3-95d4d8822bcc77fdbea2255491cf3267.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

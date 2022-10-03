@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Compass.mp3-a8b09dfc72c2fd7ee1a3c67d35e9f7e4.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Compass.mp3"
+dest_files=[ "res://.import/Compass.mp3-a8b09dfc72c2fd7ee1a3c67d35e9f7e4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

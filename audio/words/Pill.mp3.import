@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Pill.mp3-ca12a8e58d5f7bb85b17f31cc4831fc4.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Pill.mp3"
+dest_files=[ "res://.import/Pill.mp3-ca12a8e58d5f7bb85b17f31cc4831fc4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

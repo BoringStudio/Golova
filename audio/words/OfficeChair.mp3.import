@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/OfficeChair.mp3-9014fe0f1462fc77d1700fbe3a50b797.mp3str"
+
+[deps]
+
+source_file="res://audio/words/OfficeChair.mp3"
+dest_files=[ "res://.import/OfficeChair.mp3-9014fe0f1462fc77d1700fbe3a50b797.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

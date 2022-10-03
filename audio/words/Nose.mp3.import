@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nose.mp3-07547c92f0cf73bea4efceddb0086f6b.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Nose.mp3"
+dest_files=[ "res://.import/Nose.mp3-07547c92f0cf73bea4efceddb0086f6b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

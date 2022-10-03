@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Safe.mp3-10e4cf52694d625020e5a491f9f3a6e7.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Safe.mp3"
+dest_files=[ "res://.import/Safe.mp3-10e4cf52694d625020e5a491f9f3a6e7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

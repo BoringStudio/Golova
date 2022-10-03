@@ -11,12 +11,6 @@ extents = Vector3( 0.2, 0.2, 0.2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00387669, 0.00896764, -0.00282717 )
 script = ExtResource( 1 )
 
-[node name="CameraTarget" type="Spatial" parent="."]
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.589944, 0.807445, 0, -0.807445, 0.589944, 0.00470996, 2.57748, 2.02308 )
-fov = 44.1
-
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.179611, -0.179611 )
 frames = ExtResource( 2 )

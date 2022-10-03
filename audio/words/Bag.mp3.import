@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bag.mp3-061664440107ef7186c1cacf5bf73fbb.mp3str"
+
+[deps]
+
+source_file="res://audio/words/Bag.mp3"
+dest_files=[ "res://.import/Bag.mp3-061664440107ef7186c1cacf5bf73fbb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
