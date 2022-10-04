@@ -2,6 +2,10 @@ extends Spatial
 
 const Item = preload("res://prefabs/item.gd").Item
 
+const base_music_layer = preload("res://audio/base.mp3")
+const first_music_layer = preload("res://audio/first_layer.mp3")
+const second_music_layer = preload("res://audio/second_layer.mp3")
+
 enum UiState {
 	Menu,
 	Paused,
@@ -136,6 +140,7 @@ func _ready():
 	_update_interface()
 
 	# Reset camera
+	_idle_music.play()
 	_animation.play("fade_in")
 	_animation.playback_speed = 0.0;
 
@@ -148,6 +153,9 @@ func _on_game_started():
 
 
 func _on_animation_finished(anim):
+	if anim == "fade_in":
+		_idle_music.stop()
+
 	if anim == "fade_in" or anim == "show_hint" or anim == "win":
 		_head_timer.start()
 		_regenerate()
@@ -264,10 +272,6 @@ func _on_time_to_eat():
 		_focus_eyes(_camera)
 		return
 
-	if not _music.playing:
-		_idle_music.stop()
-		_music.play()
-
 	var next_seq_idx = 0
 	var cell_to_eat = null
 	var remaining_cells = []
@@ -295,12 +299,15 @@ func _on_time_to_eat():
 		_head.eat(_eaten_cell)
 
 
-func _on_finished_eating(damage: int):
+func _on_finished_eating(damage: int, last_damage: int):
 	_items.remove_child(_eaten_cell)
 	_eaten_cell.queue_free()
 	_eaten_cell = null
 
 	var victory = damage >= 3
+	if not victory and damage != last_damage:
+		_update_stream(damage)
+
 	if sequence.empty() or victory:
 		_focus_eyes(_camera)
 		_head.make_angry()
@@ -361,3 +368,14 @@ func _focus_eyes(target: Spatial):
 func _update_interface():
 	_main_menu.visible = _ui_state == UiState.Menu
 	_pause_menu.visible = _ui_state == UiState.Paused
+
+
+func _update_stream(level: int):
+	match level:
+		0:
+			_music.stream = base_music_layer
+		1:
+			_music.stream = first_music_layer
+		_:
+			_music.stream = second_music_layer
+	_music.play()

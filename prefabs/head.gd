@@ -1,6 +1,6 @@
 extends Spatial
 
-signal finished_eating(damage)
+signal finished_eating(damage, last_damage)
 
 const Item = preload("res://prefabs/item.gd")
 
@@ -96,6 +96,7 @@ func _compute_eye_position(eye: Spatial, sprite: Spatial, target: Vector3):
 func _on_animation_finished(_anim_name):
 	if _eating != null:
 		var item = _eating.item
+		var last_damage = damage
 		if _eating.marked:
 			_set_damage(damage + 1)
 		else:
@@ -103,7 +104,7 @@ func _on_animation_finished(_anim_name):
 
 		_reset_animation()
 		_set_particles_enabled(false)
-		emit_signal("finished_eating", damage)
+		emit_signal("finished_eating", damage, last_damage)
 
 		var word = Item.get_voice(item)
 		if word != null:

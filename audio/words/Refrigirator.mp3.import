@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Refrigirator.mp3-d4f78d506a75d2533c3e4a6afae7bec9.mp
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
