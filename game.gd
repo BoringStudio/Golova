@@ -2,10 +2,6 @@ extends Spatial
 
 const Item = preload("res://prefabs/item.gd").Item
 
-const base_music_layer = preload("res://audio/base.mp3")
-const first_music_layer = preload("res://audio/first_layer.mp3")
-const second_music_layer = preload("res://audio/second_layer.mp3")
-
 enum UiState {
 	Menu,
 	Paused,
@@ -28,21 +24,21 @@ const LEVELS = [
 		solution = "things you can theoretically fit\nin your mouth",
 		variants = [{
 			sequence = [Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye],
-			exclude = [Item.Cat, Item.Crab, Item.Lamp, Item.Domino, Item.Paper, Item.Key, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
+			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
 			hint = "You can't eat what I can.\nI can eat what you can.",
 			rows = 5,
 			cols = 5,
 			empty_cells = 4,
 		}, {
 			sequence = [Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
-			exclude = [Item.Cat, Item.Crab, Item.Lamp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
+			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
 			hint = "Big desires and small mouths.",
 			rows = 5,
 			cols = 5,
 			empty_cells = 4,
 		}, {
 			sequence = [Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
-			exclude = [Item.Cat, Item.Crab, Item.Lamp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
+			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
 			hint = null,
 			rows = 5,
 			cols = 5,
@@ -106,7 +102,11 @@ onready var _head_timer = $Timers/Head
 onready var _items = $Items
 onready var _camera = $Camera
 onready var _camera_target = $CameraTarget
+
 onready var _music = $Music
+onready var _music_layer_2 = $MusicLayer2
+onready var _music_layer_3 = $MusicLayer3
+
 onready var _idle_music = $IdleMusic
 onready var _main_menu = $CanvasLayer/MainMenu
 onready var _pause_menu = $CanvasLayer/PauseMenu
@@ -151,12 +151,19 @@ func _on_game_started():
 
 	_animation.playback_speed = 1.0;
 
+	var timer = get_tree().create_timer(1.0)
+	timer.connect("timeout", self, "_on_initial_appear")
+
+
+func _on_initial_appear():
+	_regenerate()
+	_head_timer.start()
+
 
 func _on_animation_finished(anim):
 	if anim == "fade_in":
 		_idle_music.stop()
-
-	if anim == "fade_in" or anim == "show_hint" or anim == "win":
+	elif anim == "show_hint" or anim == "win":
 		_head_timer.start()
 		_regenerate()
 
@@ -272,6 +279,9 @@ func _on_time_to_eat():
 		_focus_eyes(_camera)
 		return
 
+	if not _music.playing:
+		_music.play()
+
 	var next_seq_idx = 0
 	var cell_to_eat = null
 	var remaining_cells = []
@@ -299,15 +309,12 @@ func _on_time_to_eat():
 		_head.eat(_eaten_cell)
 
 
-func _on_finished_eating(damage: int, last_damage: int):
+func _on_finished_eating(damage: int, _last_damage: int):
 	_items.remove_child(_eaten_cell)
 	_eaten_cell.queue_free()
 	_eaten_cell = null
 
 	var victory = damage >= 3
-	if not victory and damage != last_damage:
-		_update_stream(damage)
-
 	if sequence.empty() or victory:
 		_focus_eyes(_camera)
 		_head.make_angry()
@@ -333,7 +340,7 @@ func _on_finished_eating(damage: int, last_damage: int):
 			variant.hint = _preview.text
 			_hint.text = variant.hint
 
-
+		#var last_level = _current_level
 		if _current_variant + 1 < current_level.variants.size():
 			_current_variant += 1
 		elif _current_level + 1 < LEVELS.size():
@@ -343,17 +350,22 @@ func _on_finished_eating(damage: int, last_damage: int):
 			_clear_field()
 			_animation.play("final")
 			return
-
 		_clear_field()
 
+		# _music_layer_2.stop()
+		# _music_layer_3.stop()
 		if variant.hint != null and not victory:
 			_head._set_damage(0)
 			_animation.play("show_hint")
 		else:
+			#_music.stop()
 			var timer = get_tree().create_timer(2.5)
 			timer.connect("timeout", self, "_on_restore_health")
 			_animation.play("win")
 	else:
+		# if damage != last_damage:
+		# 	_update_stream(damage)
+
 		_head_timer.start()
 
 
@@ -370,12 +382,15 @@ func _update_interface():
 	_pause_menu.visible = _ui_state == UiState.Paused
 
 
-func _update_stream(level: int):
-	match level:
-		0:
-			_music.stream = base_music_layer
-		1:
-			_music.stream = first_music_layer
-		_:
-			_music.stream = second_music_layer
-	_music.play()
+# func _update_stream(level: int):
+# 	match level:
+# 		0:
+# 			_music_layer_2.stop()
+# 			_music_layer_3.stop()
+# 		1:
+# 			if not _music_layer_2.playing:
+# 				_music_layer_2.play()
+# 			_music_layer_3.stop()
+# 		_:
+# 			if not _music_layer_3.playing:
+# 				_music_layer_3.play()
