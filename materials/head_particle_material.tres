@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=22]
+code = "shader_type spatial;
+render_mode unshaded;
+render_mode cull_disabled;
+
+void fragment() {
+	ALBEDO = COLOR.rgb;
+}
+"
+
+[resource]
+shader = SubResource( 22 )

@@ -1,9 +1,14 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
 [ext_resource path="res://audio/start.ogg" type="AudioStream" id=2]
+[ext_resource path="res://materials/head_material.tres" type="Material" id=3]
+[ext_resource path="res://materials/mouth.tres" type="Material" id=4]
+[ext_resource path="res://prefabs/precompiled.gd" type="Script" id=5]
 [ext_resource path="res://prefabs/head.tscn" type="PackedScene" id=6]
 [ext_resource path="res://game.gd" type="Script" id=7]
+[ext_resource path="res://materials/head_particle_material.tres" type="Material" id=8]
+[ext_resource path="res://materials/cell_particle_material.tres" type="Material" id=9]
 [ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefabs/foliage/leafs7.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefabs/foliage/leafs9.tscn" type="PackedScene" id=12]
@@ -1198,31 +1203,12 @@ tracks/2/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=20]
-flags_do_not_receive_shadows = true
-flags_disable_ambient_light = true
-params_cull_mode = 2
-albedo_color = Color( 1, 0, 0, 1 )
-emission_enabled = true
-emission = Color( 1, 0, 0, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
-
 [sub_resource type="QuadMesh" id=21]
-material = SubResource( 20 )
+material = ExtResource( 8 )
 size = Vector2( 0.01, 0.2 )
 
-[sub_resource type="SpatialMaterial" id=22]
-albedo_color = Color( 1, 0, 0, 1 )
-emission_enabled = true
-emission = Color( 1, 0.0431373, 0.0431373, 1 )
-emission_energy = 1.0
-emission_operator = 0
-emission_on_uv2 = false
-
 [sub_resource type="QuadMesh" id=23]
-material = SubResource( 22 )
+material = ExtResource( 9 )
 size = Vector2( 0.01, 0.01 )
 
 [sub_resource type="PlaneMesh" id=24]
@@ -1455,7 +1441,8 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Precompiled" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.3065 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.61493 )
+script = ExtResource( 5 )
 
 [node name="HeadParticles" type="Particles" parent="Precompiled"]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, -4.47035e-08, 0, -0.204547, 0.186642 )
@@ -1488,3 +1475,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 layers = 4
 mesh = SubResource( 24 )
 material/0 = ExtResource( 26 )
+
+[node name="Head" type="MeshInstance" parent="Precompiled"]
+material_override = ExtResource( 3 )
+
+[node name="Mouth" type="MeshInstance" parent="Precompiled"]
+material_override = ExtResource( 4 )
