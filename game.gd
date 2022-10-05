@@ -27,21 +27,21 @@ const LEVELS = [
 			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
 			hint = "You can't eat what I can.\nI can eat what you can.",
 			rows = 5,
-			cols = 5,
+			cols = 4,
 			empty_cells = 4,
 		}, {
 			sequence = [Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
 			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
 			hint = "Big desires and small mouths.",
 			rows = 5,
-			cols = 5,
+			cols = 4,
 			empty_cells = 4,
 		}, {
 			sequence = [Item.Nose, Item.Ladybug, Item.Strawberry, Item.AceOfSpades],
 			exclude = [Item.Cat, Item.Crab, Item.Bulp, Item.Domino, Item.Paper, Item.Key, Item.Cockroach, Item.Dice, Item.Lipstick, Item.Money, Item.Eye, Item.Pill, Item.Lighter, Item.Compass, Item.Egg, Item.ChessPiece],
 			hint = null,
 			rows = 5,
-			cols = 5,
+			cols = 4,
 			empty_cells = 4,
 		}]
 	},
@@ -149,7 +149,7 @@ func _on_game_started():
 
 	_animation.playback_speed = 1.0;
 
-	var timer = get_tree().create_timer(1.0)
+	var timer = get_tree().create_timer(13.0)
 	timer.connect("timeout", self, "_on_initial_appear")
 
 

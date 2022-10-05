@@ -1,17 +1,15 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
 
-[ext_resource path="res://textures/head_front.png" type="Texture" id=1]
-[ext_resource path="res://textures/head_cracks.png" type="Texture" id=2]
+[ext_resource path="res://textures/head_back.png" type="Texture" id=1]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=23]
 code = "shader_type spatial;
 
-render_mode async_visible, blend_mix,  cull_back, diffuse_burley;
+render_mode async_visible, blend_mix, cull_back, diffuse_burley;
 uniform vec4 albedo : hint_color;
 uniform sampler2D texture_albedo : hint_albedo;
-uniform sampler2D cracks_mask;
 uniform sampler2D rainbow_noise;
-uniform bool marked = true;
+uniform bool marked;
 
 uniform vec2 rainbow_direction = vec2(1, -1);
 uniform float rainbow_speed = 1.0;
@@ -24,32 +22,30 @@ vec3 hsv2rgb(vec3 c) {
 
 void fragment() {
 	vec4 albedo_tex = texture(texture_albedo, UV);
-
 	if (marked) {
-		float mask = texture(cracks_mask, UV.xy).x;
 		float rainbow = texture(rainbow_noise, UV.xy + TIME * normalize(rainbow_direction) * rainbow_speed).x;
-		if (mask > 0.001) {
-			EMISSION = smoothstep(0, 1, mask) * hsv2rgb(vec3(rainbow, 1.0, 1.0));
+		if (albedo_tex.a > 0.001) {
+			EMISSION = smoothstep(0, 1, albedo_tex.a) * hsv2rgb(vec3(rainbow, 1.0, 1.0));
 		}
 	}
-
+	
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ROUGHNESS = 0.0;
 	SPECULAR = 0.0;
 	ALPHA = albedo_tex.a;
 }
 "
 
-[sub_resource type="OpenSimplexNoise" id=23]
+[sub_resource type="OpenSimplexNoise" id=24]
 
-[sub_resource type="NoiseTexture" id=24]
-noise = SubResource( 23 )
+[sub_resource type="NoiseTexture" id=25]
+noise = SubResource( 24 )
 
 [resource]
-shader = SubResource( 1 )
+shader = SubResource( 23 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
-shader_param/marked = true
+shader_param/marked = null
 shader_param/rainbow_direction = Vector2( 1, -1 )
 shader_param/rainbow_speed = 0.1
 shader_param/texture_albedo = ExtResource( 1 )
-shader_param/cracks_mask = ExtResource( 2 )
-shader_param/rainbow_noise = SubResource( 24 )
+shader_param/rainbow_noise = SubResource( 25 )

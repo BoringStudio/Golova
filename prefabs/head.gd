@@ -5,8 +5,9 @@ signal finished_eating(damage, last_damage)
 const Item = preload("res://prefabs/item.gd")
 
 export(float) var ray_target_height = 0.5
-export(SpatialMaterial) var head_material: SpatialMaterial;
-export(Texture) var damaged_texture: Texture;
+export(ShaderMaterial) var head_material: ShaderMaterial;
+export(ShaderMaterial) var back_material: ShaderMaterial;
+export(Array, Texture) var damaged_textures: Array;
 export(Color) var damaged_color: Color;
 
 onready var _animation_player = $AnimationPlayer
@@ -36,9 +37,8 @@ var _eating: Cell = null
 var damage: int = 0 setget _set_damage
 
 func _ready():
-	head_material.emission_operator = SpatialMaterial.EMISSION_OP_MULTIPLY
-	head_material.emission = damaged_color
-	head_material.emission_texture = damaged_texture
+	head_material.set_shader_param("marked", false)
+	back_material.set_shader_param("marked", false)
 
 	_particles.visible = true
 	_particles.emitting = true
@@ -127,16 +127,30 @@ func _set_damage(value):
 
 	match value:
 		0:
-			head_material.albedo_color = Color.white
-			head_material.emission_enabled = false
-		1:
-			head_material.albedo_color = lerp(Color.white,	damaged_color, 0.2)
-			head_material.emission_enabled = false
-		2:
-			head_material.albedo_color = lerp(Color.white,	damaged_color, 0.5)
-			head_material.emission_enabled = true
-		_:
-			head_material.albedo_color = damaged_color
-			head_material.emission_enabled = true
+			head_material.set_shader_param("albedo", Color.white)
+			head_material.set_shader_param("marked", false)
 
-	head_material.albedo_color.a = 1.0;
+			back_material.set_shader_param("albedo", Color.white)
+			back_material.set_shader_param("marked", false)
+		1:
+			var color = lerp(Color.white, damaged_color, 0.2)
+			head_material.set_shader_param("albedo", color)
+			head_material.set_shader_param("cracks_mask", damaged_textures[0])
+			head_material.set_shader_param("marked", true)
+
+			back_material.set_shader_param("albedo", color)
+			back_material.set_shader_param("marked", false)
+		2:
+			var color = lerp(Color.white, damaged_color, 0.5)
+			head_material.set_shader_param("albedo", color)
+			head_material.set_shader_param("cracks_mask", damaged_textures[1])
+			head_material.set_shader_param("marked", true)
+
+			back_material.set_shader_param("albedo", color)
+			back_material.set_shader_param("marked", false)
+		_:
+			head_material.set_shader_param("albedo", damaged_color)
+			head_material.set_shader_param("marked", true)
+
+			back_material.set_shader_param("albedo", damaged_color)
+			back_material.set_shader_param("marked", true)
