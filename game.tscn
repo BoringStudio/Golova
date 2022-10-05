@@ -1,14 +1,8 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://materials/ground_material.tres" type="Material" id=1]
-[ext_resource path="res://prefabs/leafs_left.tscn" type="PackedScene" id=2]
-[ext_resource path="res://prefabs/top_leafs_left.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prefabs/tree_right.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prefabs/tree_left.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefabs/head.tscn" type="PackedScene" id=6]
 [ext_resource path="res://game.gd" type="Script" id=7]
-[ext_resource path="res://prefabs/tree_right_2.tscn" type="PackedScene" id=8]
-[ext_resource path="res://prefabs/bottom_leafs_left.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/main_menu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefabs/foliage/leafs7.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefabs/foliage/leafs9.tscn" type="PackedScene" id=12]
@@ -25,10 +19,8 @@
 [ext_resource path="res://materials/cell_particles_material.tres" type="Material" id=24]
 [ext_resource path="res://materials/head_particles_material.tres" type="Material" id=25]
 [ext_resource path="res://materials/ray_material.tres" type="Material" id=26]
-[ext_resource path="res://ui/Deathridge Demo.ttf" type="DynamicFontData" id=27]
+[ext_resource path="res://ui/font.ttf" type="DynamicFontData" id=27]
 [ext_resource path="res://audio/start.mp3" type="AudioStream" id=28]
-[ext_resource path="res://audio/first_layer.mp3" type="AudioStream" id=29]
-[ext_resource path="res://audio/second_layer.mp3" type="AudioStream" id=30]
 [ext_resource path="res://audio/victory.mp3" type="AudioStream" id=31]
 [ext_resource path="res://audio/head_background.mp3" type="AudioStream" id=32]
 
@@ -1288,48 +1280,6 @@ directional_shadow_mode = 0
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 7, 7.47334 )
 current = true
 
-[node name="Trees" type="Spatial" parent="."]
-visible = false
-
-[node name="Tree" parent="Trees" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87415, -1.89985, 0.227002 )
-
-[node name="Tree4" parent="Trees" instance=ExtResource( 5 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77496, -1.89985, -0.272747 )
-
-[node name="Tree2" parent="Trees" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50054, -0.745903, -6.25398 )
-
-[node name="Tree3" parent="Trees" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8606, -2.59222, 3.1498 )
-
-[node name="LeafsLeft" parent="Trees" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09192, -0.738091, 4.12299 )
-
-[node name="LeafsLeft2" parent="Trees" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21152, -0.738091, 4.31892 )
-
-[node name="TopLeafsLeft" parent="Trees" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.056, 2.37656, -3.67662 )
-
-[node name="TopLeafsLeft2" parent="Trees" instance=ExtResource( 3 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3781, 2.37656, -2.14503 )
-
-[node name="TreeRight2" parent="Trees" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.11305, -3.7144, 4.00929 )
-
-[node name="TreeRight" parent="Trees" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3633, 0, -5.61018 )
-
-[node name="BottomLeafsLeft" parent="Trees" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.17012, -0.855526, 3.39378 )
-
-[node name="BottomLeafsLeft2" parent="Trees" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.87834, -0.855525, 2.51156 )
-
-[node name="BottomLeafsLeft3" parent="Trees" instance=ExtResource( 9 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 9.37532, -0.855523, -4.16241 )
-
 [node name="FoliageLeft" type="Spatial" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FoliageLeft"]
@@ -1468,14 +1418,6 @@ anims/idle = SubResource( 4 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )
-volume_db = -10.0
-
-[node name="MusicLayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 29 )
-volume_db = -10.0
-
-[node name="MusicLayer3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 30 )
 volume_db = -10.0
 
 [node name="IdleMusic" type="AudioStreamPlayer" parent="."]

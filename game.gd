@@ -104,8 +104,6 @@ onready var _camera = $Camera
 onready var _camera_target = $CameraTarget
 
 onready var _music = $Music
-onready var _music_layer_2 = $MusicLayer2
-onready var _music_layer_3 = $MusicLayer3
 
 onready var _idle_music = $IdleMusic
 onready var _main_menu = $CanvasLayer/MainMenu

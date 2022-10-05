@@ -12,7 +12,6 @@ var touch5 = preload("res://audio/touch5.mp3")
 onready var _sprite_root = $SpriteRoot
 onready var _sprite = $SpriteRoot/Sprite
 onready var _particles = $Particles
-onready var _animation = $AnimationPlayer
 
 var item: int = -1
 var marked: bool = false

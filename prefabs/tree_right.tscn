@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://textures/palm_right_1.png" type="Texture" id=1]
-
-[node name="TreeRight" type="Spatial"]
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, -1.59368, 4.40945, -3.08753 )
-texture = ExtResource( 1 )
