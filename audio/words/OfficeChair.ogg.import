@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/OfficeChair.ogg-9cbf5326fd7b17c377e3d6283160457a.oggstr"
+
+[deps]
+
+source_file="res://audio/words/OfficeChair.ogg"
+dest_files=[ "res://.import/OfficeChair.ogg-9cbf5326fd7b17c377e3d6283160457a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

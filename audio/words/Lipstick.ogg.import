@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lipstick.ogg-119ad83e039e51a207c35cb352a7ebb5.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Lipstick.ogg"
+dest_files=[ "res://.import/Lipstick.ogg-119ad83e039e51a207c35cb352a7ebb5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Refrigirator.ogg-6d72ae93fe47da6f34bec6c8f009a694.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Refrigirator.ogg"
+dest_files=[ "res://.import/Refrigirator.ogg-6d72ae93fe47da6f34bec6c8f009a694.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

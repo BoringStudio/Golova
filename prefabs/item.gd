@@ -87,5 +87,5 @@ enum Item {
 static func get_voice(item: int):
 	for key in Item.keys():
 		if Item[key] == item:
-			return load("res://audio/words/{0}.mp3".format([key]))
+			return load("res://audio/words/{0}.ogg".format([key]))
 	return null

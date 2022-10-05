@@ -3,11 +3,11 @@ class_name Cell
 
 var atlas1 = preload("res://materials/items_atlas.tres")
 var atlas2 = preload("res://materials/items_atlas2.tres")
-var touch1 = preload("res://audio/touch1.mp3")
-var touch2 = preload("res://audio/touch2.mp3")
-var touch3 = preload("res://audio/touch3.mp3")
-var touch4 = preload("res://audio/touch4.mp3")
-var touch5 = preload("res://audio/touch5.mp3")
+var touch1 = preload("res://audio/touch1.ogg")
+var touch2 = preload("res://audio/touch2.ogg")
+var touch3 = preload("res://audio/touch3.ogg")
+var touch4 = preload("res://audio/touch4.ogg")
+var touch5 = preload("res://audio/touch5.ogg")
 
 onready var _sprite_root = $SpriteRoot
 onready var _sprite = $SpriteRoot/Sprite

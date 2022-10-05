@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Clown.ogg-3765490d6605fbddf89c0f559dd5d519.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Clown.ogg"
+dest_files=[ "res://.import/Clown.ogg-3765490d6605fbddf89c0f559dd5d519.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

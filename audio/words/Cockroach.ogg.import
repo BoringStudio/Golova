@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cockroach.ogg-49352656aa7459f53220ca75a5452695.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Cockroach.ogg"
+dest_files=[ "res://.import/Cockroach.ogg-49352656aa7459f53220ca75a5452695.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

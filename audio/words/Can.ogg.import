@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Can.ogg-9022bc69fc7cb642f1db3a5c66408ae4.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Can.ogg"
+dest_files=[ "res://.import/Can.ogg-9022bc69fc7cb642f1db3a5c66408ae4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

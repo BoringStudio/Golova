@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WashingMachine.ogg-cff3e541a6cc88c343dfbe556f855c8a.oggstr"
+
+[deps]
+
+source_file="res://audio/words/WashingMachine.ogg"
+dest_files=[ "res://.import/WashingMachine.ogg-cff3e541a6cc88c343dfbe556f855c8a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Drill.ogg-9b6c3d917a389fa2eb20ed876a3a4733.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Drill.ogg"
+dest_files=[ "res://.import/Drill.ogg-9b6c3d917a389fa2eb20ed876a3a4733.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

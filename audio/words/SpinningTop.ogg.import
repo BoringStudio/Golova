@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SpinningTop.ogg-4e82ded5d683bd8e334515c7c5e67256.oggstr"
+
+[deps]
+
+source_file="res://audio/words/SpinningTop.ogg"
+dest_files=[ "res://.import/SpinningTop.ogg-4e82ded5d683bd8e334515c7c5e67256.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

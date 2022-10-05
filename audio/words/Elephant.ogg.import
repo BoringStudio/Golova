@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Elephant.ogg-289deb99b0c3782f641caaf693165694.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Elephant.ogg"
+dest_files=[ "res://.import/Elephant.ogg-289deb99b0c3782f641caaf693165694.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

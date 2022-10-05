@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Nose.ogg-a6d1cac9229bd906f99a751bc7c3c76b.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Nose.ogg"
+dest_files=[ "res://.import/Nose.ogg-a6d1cac9229bd906f99a751bc7c3c76b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

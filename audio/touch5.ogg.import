@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/touch5.ogg-ed574aa6aa612984683895655a9daeaf.oggstr"
+
+[deps]
+
+source_file="res://audio/touch5.ogg"
+dest_files=[ "res://.import/touch5.ogg-ed574aa6aa612984683895655a9daeaf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/touch2.ogg-3c81e2b7fc02ae4cc53f5f788739daa1.oggstr"
+
+[deps]
+
+source_file="res://audio/touch2.ogg"
+dest_files=[ "res://.import/touch2.ogg-3c81e2b7fc02ae4cc53f5f788739daa1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

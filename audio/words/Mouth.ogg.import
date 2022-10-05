@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Mouth.ogg-6635f681305c2d34e82f8af881bf736d.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Mouth.ogg"
+dest_files=[ "res://.import/Mouth.ogg-6635f681305c2d34e82f8af881bf736d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

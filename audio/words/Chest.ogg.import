@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chest.ogg-3cf47b9cde7fabd2e273d035ae21a635.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Chest.ogg"
+dest_files=[ "res://.import/Chest.ogg-3cf47b9cde7fabd2e273d035ae21a635.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

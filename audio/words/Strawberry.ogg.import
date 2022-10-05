@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Strawberry.ogg-12ed2131af39d6c4cc6ac6421fdbfecc.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Strawberry.ogg"
+dest_files=[ "res://.import/Strawberry.ogg-12ed2131af39d6c4cc6ac6421fdbfecc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

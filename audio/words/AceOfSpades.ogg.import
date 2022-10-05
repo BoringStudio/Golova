@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AceOfSpades.ogg-32312180c7b6be18445a3dacf58b445b.oggstr"
+
+[deps]
+
+source_file="res://audio/words/AceOfSpades.ogg"
+dest_files=[ "res://.import/AceOfSpades.ogg-32312180c7b6be18445a3dacf58b445b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

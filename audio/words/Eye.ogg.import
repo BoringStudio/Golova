@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Eye.ogg-ace5c448786e11e2d7c00c491eb08116.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Eye.ogg"
+dest_files=[ "res://.import/Eye.ogg-ace5c448786e11e2d7c00c491eb08116.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

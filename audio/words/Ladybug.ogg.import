@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ladybug.ogg-8e7c08e37bec299f8bd749981715b7ba.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Ladybug.ogg"
+dest_files=[ "res://.import/Ladybug.ogg-8e7c08e37bec299f8bd749981715b7ba.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

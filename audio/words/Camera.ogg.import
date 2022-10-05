@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Camera.ogg-955a253300b0d2bfbd9ce963ed74019d.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Camera.ogg"
+dest_files=[ "res://.import/Camera.ogg-955a253300b0d2bfbd9ce963ed74019d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

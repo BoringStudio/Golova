@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WindMill.ogg-af40ad64a0782052c56b76571a0c08d4.oggstr"
+
+[deps]
+
+source_file="res://audio/words/WindMill.ogg"
+dest_files=[ "res://.import/WindMill.ogg-af40ad64a0782052c56b76571a0c08d4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

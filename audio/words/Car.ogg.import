@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Car.ogg-292ea587b8ba169885c3ab784ddec846.oggstr"
+
+[deps]
+
+source_file="res://audio/words/Car.ogg"
+dest_files=[ "res://.import/Car.ogg-292ea587b8ba169885c3ab784ddec846.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
